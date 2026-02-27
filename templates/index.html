@@ -24,7 +24,13 @@
                         CORREO
                     </th>
                     <th scope="col" class="px-6 py-3 font-medium">
-                        editar
+                        DETALLES
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium">
+                        EDITAR
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium">
+                        ELIMINAR
                     </th>
                 </tr>
             </thead>
@@ -50,6 +56,20 @@
                         detalles
     </a>
                     </td>
+                     <td class="px-6 py-4">
+                        <a href="{{ url_for('modificar', id=alum.id) }}" 
+                        class="font-medium text-fg-brand hover:underline">
+                        editar
+    </a>
+                    </td>
+
+                    <td class="px-6 py-4">
+                        <a href="{{ url_for('eliminar', id=alum.id) }}" 
+                        class="font-medium text-fg-brand hover:underline">
+                        Eliminar
+    </a>
+                    </td>
+                    
                     
                     
                 </tr>
