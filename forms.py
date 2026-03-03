@@ -2,24 +2,51 @@ from wtforms import Form, IntegerField, StringField
 from wtforms import validators
 
 class UserForm(Form):
+
     id = IntegerField('id')
 
     nombre = StringField('nombre', [
-        validators.DataRequired(message='El nombre es requerido'),
-        validators.Length(min=4, max=20, message='required min=4 max=20')
+        validators.DataRequired(),
+        validators.Length(min=4, max=20)
     ])
 
-    apaterno = StringField('apaterno', [
-        validators.DataRequired(message='El apellido paterno es requerido'),
-        validators.Length(min=4, max=20, message='required min=4 max=20')
-    ])
-
-    amaterno = StringField('amaterno', [
-        validators.DataRequired(message='El apellido materno es requerido'),
-        validators.Length(min=4, max=20, message='required min=4 max=20')
+    apellidos = StringField('apellidos', [
+        validators.DataRequired(),
+        validators.Length(min=4, max=50)
     ])
 
     email = StringField('email', [
-        validators.DataRequired(message='El email es requerido'),
-        validators.Length(min=4, max=50, message='required min=4 max=50')
+        validators.DataRequired(),
+        validators.Length(min=4, max=50)
+    ])
+
+    telefono = StringField('telefono', [
+        validators.DataRequired(),
+        validators.Length(min=10, max=15)
+    ])
+
+class MaestroForm(Form):
+
+      matricula = IntegerField('matricula', [
+        validators.DataRequired()
+    ])
+
+      nombre = StringField('nombre', [
+        validators.DataRequired(),
+        validators.Length(min=4, max=50)
+    ])
+
+      apellidos = StringField('apellidos', [
+        validators.DataRequired(),
+        validators.Length(min=4, max=50)
+    ])
+
+      especialidad = StringField('especialidad', [
+        validators.DataRequired(),
+        validators.Length(min=4, max=50)
+    ])
+
+      email = StringField('email', [
+        validators.DataRequired(),
+        validators.Length(min=4, max=50)
     ])
