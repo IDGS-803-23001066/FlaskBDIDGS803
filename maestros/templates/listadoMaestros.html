@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+{% block container %}
+
+<div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
+    
+    <a href="{{ url_for('maestros.registrar_maestro') }}"
+class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+    Agregar Maestro
+</a>
+ 
+    <table class="w-full text-sm text-left rtl:text-right text-body">
+        
+        <thead class="bg-neutral-secondary-soft border-b border-default">
+            <tr>
+
+                <th class="px-6 py-3 font-medium">
+                    MATRICULA
+                </th>
+
+                <th class="px-6 py-3 font-medium">
+                    NOMBRE
+                </th>
+
+                <th class="px-6 py-3 font-medium">
+                    APELLIDOS
+                </th>
+                
+                <th class="px-6 py-3 font-medium">
+                    ESPECIALIDAD
+                </th>
+
+                <th class="px-6 py-3 font-medium">
+                    CORREO
+                </th>
+                <th scope="col" class="px-6 py-3 font-medium">
+                        DETALLES
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium">
+                        EDITAR
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium">
+                        ELIMINAR
+                    </th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+
+{% for maestro in maestros %}
+<tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
+
+<td class="px-6 py-4">
+{{ maestro.matricula }}
+</td>
+
+<td class="px-6 py-4">
+{{ maestro.nombre }}
+</td>
+
+<td class="px-6 py-4">
+{{ maestro.apellidos }}
+</td>
+
+<td class="px-6 py-4">
+{{ maestro.especialidad }}
+</td>
+
+<td class="px-6 py-4">
+{{ maestro.email }}
+</td>
+<td class="px-6 py-4">
+<a href="{{ url_for('maestros.detalles_maestro', matricula=maestro.matricula) }}">
+detalles
+</a>
+</td>
+
+<td class="px-6 py-4">
+<a href="{{ url_for('maestros.modificar_maestro', matricula=maestro.matricula) }}">
+editar
+</a>
+</td>
+
+<td class="px-6 py-4">
+<a href="{{ url_for('maestros.eliminar_maestro', matricula=maestro.matricula) }}">
+eliminar
+</a>
+</td>
+
+</tr>
+{% endfor %}
+
+</tbody>
+    </table>
+
+</div>
+
+{% endblock %}

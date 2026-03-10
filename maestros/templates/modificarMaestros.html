@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block container %}
+{% import "_macros.html" as macros %}
+
+<form method="POST" class="max-w-sm mx-auto">
+
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+<div class="mb-5">
+<label class="block mb-2.5 text-sm font-medium text-heading">
+Matrícula
+</label>
+{{ macros.camposNuevos(form.matricula, class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5 shadow-xs") }}
+</div>
+
+<div class="mb-5">
+<label class="block mb-2.5 text-sm font-medium text-heading">
+Nombre
+</label>
+{{ macros.camposNuevos(form.nombre, class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5 shadow-xs") }}
+</div>
+
+<div class="mb-5">
+<label class="block mb-2.5 text-sm font-medium text-heading">
+Apellidos
+</label>
+{{ macros.camposNuevos(form.apellidos, class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5 shadow-xs") }}
+</div>
+
+<div class="mb-5">
+<label class="block mb-2.5 text-sm font-medium text-heading">
+Especialidad
+</label>
+{{ macros.camposNuevos(form.especialidad, class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5 shadow-xs") }}
+</div>
+
+<div class="mb-5">
+<label class="block mb-2.5 text-sm font-medium text-heading">
+Correo
+</label>
+{{ macros.camposNuevos(form.email, class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5 shadow-xs") }}
+</div>
+
+<div class="flex gap-4">
+
+<button type="submit"
+class="text-white bg-brand hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium rounded-base text-sm px-4 py-2.5">
+Guardar
+</button>
+
+<a href="{{ url_for('maestros.lista_maestros') }}"
+class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:ring-red-300 shadow-xs font-medium rounded-base text-sm px-4 py-2.5 text-center">
+Salir
+</a>
+
+</div>
+
+</form>
+
+{% endblock %}
