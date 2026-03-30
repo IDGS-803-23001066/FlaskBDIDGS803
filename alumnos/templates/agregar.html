@@ -15,35 +15,28 @@
 
   <div class="mb-5">
     <label class="block mb-2.5 text-sm font-medium text-heading">
-        Apellidos
+        Apellido
     </label>
-    {{ macros.camposNuevos(form.apellidos, class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs") }}
+    {{ macros.camposNuevos(form.apaterno, class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs") }}
   </div>
 
   <div class="mb-5">
     <label class="block mb-2.5 text-sm font-medium text-heading">
-        Correo
+        Email
     </label>
     {{ macros.camposNuevos(form.email, class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs") }}
-  </div>
-
-  <div class="mb-5">
-    <label class="block mb-2.5 text-sm font-medium text-heading">
-        Teléfono
-    </label>
-    {{ macros.camposNuevos(form.telefono, class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs") }}
   </div>
 
   <div class="flex gap-4">
 
     <button type="submit"
       class="text-white bg-brand hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium rounded-base text-sm px-4 py-2.5">
-      Guardar
+      Guardar Alumno
     </button>
 
-    <a href="{{ url_for('index') }}"
+    <a href="{{ url_for('alumnos_bp.listado') }}"
       class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:ring-red-300 shadow-xs font-medium rounded-base text-sm px-4 py-2.5 text-center">
-      Salir
+      Cancelar
     </a>
 
   </div>

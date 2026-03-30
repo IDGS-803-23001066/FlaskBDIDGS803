@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+{% block container %}
+
+<div class="max-w-6xl mx-auto">
+
+    
+    <div class="flex gap-4 mb-6">
+
+        <a href="{{ url_for('consultas.alumnos_por_curso') }}"
+        class="text-white bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700 text-sm">
+        Alumnos por Curso
+        </a>
+
+        <a href="{{ url_for('consultas.cursos_por_alumno') }}"
+        class="text-white bg-green-600 px-4 py-2 rounded-lg hover:bg-green-700 text-sm">
+        Cursos por Alumno
+        </a>
+
+        <a href="{{ url_for('inscripciones.lista_inscripciones') }}"
+        class="text-white bg-purple-600 px-4 py-2 rounded-lg hover:bg-purple-700 text-sm">
+        Inscribir Alumno
+        </a>
+
+        <a href="{{ url_for('cursos.registrar_curso') }}"
+        class="text-white bg-indigo-600 px-4 py-2 rounded-lg hover:bg-indigo-700 text-sm ml-auto">
+        Agregar Curso
+        </a>
+
+    </div>
+
+
+    <!-- ====== TABLA ====== -->
+    <div class="relative overflow-x-auto bg-white shadow rounded-lg border">
+
+        <table class="w-full text-sm text-left text-gray-600">
+
+            <thead class="bg-gray-100 border-b">
+                <tr>
+
+                    <th class="px-6 py-3">ID</th>
+                    <th class="px-6 py-3">Curso</th>
+                    <th class="px-6 py-3">Descripción</th>
+                    <th class="px-6 py-3">Maestro</th>
+                    <th class="px-6 py-3 text-center">Detalles</th>
+                    <th class="px-6 py-3 text-center">Editar</th>
+                    <th class="px-6 py-3 text-center">Eliminar</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+            {% for curso in cursos %}
+
+            <tr class="border-b hover:bg-gray-50">
+
+                <td class="px-6 py-4">
+                {{ curso.id }}
+                </td>
+
+                <td class="px-6 py-4 font-medium">
+                {{ curso.nombre }}
+                </td>
+
+                <td class="px-6 py-4">
+                {{ curso.descripcion }}
+                </td>
+
+                <td class="px-6 py-4">
+                {{ curso.maestro.nombre }} {{ curso.maestro.apellidos }}
+                </td>
+
+                <td class="px-6 py-4 text-center">
+                <a href="{{ url_for('cursos.detalles_curso', id=curso.id) }}"
+                class="text-blue-600 hover:underline">
+                Ver
+                </a>
+                </td>
+
+                <td class="px-6 py-4 text-center">
+                <a href="{{ url_for('cursos.modificar_curso', id=curso.id) }}"
+                class="text-yellow-600 hover:underline">
+                Editar
+                </a>
+                </td>
+
+                <td class="px-6 py-4 text-center">
+                <a href="{{ url_for('cursos.eliminar_curso', id=curso.id) }}"
+                class="text-red-600 hover:underline">
+                Eliminar
+                </a>
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

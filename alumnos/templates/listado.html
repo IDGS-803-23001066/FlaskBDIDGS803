@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block container %}
+
+<div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
+
+    <a href="{{ url_for('alumnos_bp.agregar') }}"
+    class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+        Agregar Alumno
+    </a>
+
+    <table class="w-full text-sm text-left rtl:text-right text-body mt-4">
+        
+        <thead class="bg-neutral-secondary-soft border-b border-default">
+            <tr>
+                <th class="px-6 py-3 font-medium">Nombre</th>
+                <th class="px-6 py-3 font-medium">Apellido</th>
+                <th class="px-6 py-3 font-medium">Correo</th>
+                <th class="px-6 py-3 font-medium">Detalles</th>
+                <th class="px-6 py-3 font-medium">Editar</th>
+                <th class="px-6 py-3 font-medium">Eliminar</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for alum in alumnos %}
+            <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
+
+                <th class="px-6 py-4 font-medium text-heading whitespace-nowrap">
+                    {{ alum.nombre }}
+                </th>
+
+                <td class="px-6 py-4">
+                    {{ alum.apaterno }}
+                </td>
+
+                <td class="px-6 py-4">
+                    {{ alum.email }}
+                </td>
+
+                
+                <td class="px-6 py-4">
+                    <a href="{{ url_for('alumnos_bp.detalles') }}?id={{ alum.id }}"
+                    class="font-medium text-fg-brand hover:underline">
+                        Detalles
+                    </a>
+                </td>
+
+                
+                <td class="px-6 py-4">
+                    <a href="{{ url_for('alumnos_bp.modificar') }}?id={{ alum.id }}"
+                    class="font-medium text-fg-brand hover:underline">
+                        Editar
+                    </a>
+                </td>
+
+                
+                <td class="px-6 py-4">
+                    <a href="{{ url_for('alumnos_bp.eliminar') }}?id={{ alum.id }}"
+                    class="font-medium text-red-600 hover:underline">
+                        Eliminar
+                    </a>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

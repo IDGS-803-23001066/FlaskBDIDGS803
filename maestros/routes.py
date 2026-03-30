@@ -1,20 +1,21 @@
-from flask import redirect, render_template, request, url_for
+from . import maestros_bp
+from flask import Blueprint, redirect, render_template, request, url_for
 from models import Maestros, db
 from forms import MaestroForm
-from maestros import maestros
 
 
 
 
-@maestros.route('/perfil/<nombre>')
+@maestros_bp.route('/perfil/<nombre>')
 def perfil(nombre):
     return f"Perfil de {nombre}"
 
-@maestros.route("/Maestros", methods=['GET','POST'])
+
+@maestros_bp.route("/Maestros", methods=['GET','POST'])
 def lista_maestros():
 
     create_form = MaestroForm(request.form)
-    maestros = Maestros.query.all()   # ← CONSULTA A LA BD
+    maestros = Maestros.query.all()
 
     if request.method == 'POST' and create_form.validate():
 
@@ -34,10 +35,11 @@ def lista_maestros():
     return render_template(
         "listadoMaestros.html",
         form=create_form,
-        maestros=maestros   # ← SE ENVÍAN AL HTML
+        maestros=maestros
     )
 
-@maestros.route("/detalles_maestro")
+
+@maestros_bp.route("/detalles_maestro")
 def detalles_maestro():
 
     matricula = request.args.get('matricula')
@@ -50,7 +52,9 @@ def detalles_maestro():
         especialidad=maestro.especialidad,
         email=maestro.email
     )
-@maestros.route("/modificar_maestro", methods=['GET','POST'])
+
+
+@maestros_bp.route("/modificar_maestro", methods=['GET','POST'])
 def modificar_maestro():
 
     create_form = MaestroForm(request.form)
@@ -80,7 +84,8 @@ def modificar_maestro():
 
     return render_template("modificarMaestros.html", form=create_form)
 
-@maestros.route("/eliminar_maestro", methods=['GET','POST'])
+
+@maestros_bp.route("/eliminar_maestro", methods=['GET','POST'])
 def eliminar_maestro():
 
     create_form = MaestroForm(request.form)
@@ -106,12 +111,20 @@ def eliminar_maestro():
 
     return render_template("eliminarMaestros.html", form=create_form)
 
-@maestros.route("/registrar_maestro", methods=['GET','POST'])
+
+@maestros_bp.route("/registrar_maestro", methods=['GET','POST'])
 def registrar_maestro():
 
     create_form = MaestroForm(request.form)
 
     if request.method == 'POST' and create_form.validate():
+
+        maestro_existente = Maestros.query.filter_by(
+            matricula=create_form.matricula.data
+        ).first()
+
+        if maestro_existente:
+            return "Ya existe un maestro con esa matrícula"
 
         maestro = Maestros(
             matricula=create_form.matricula.data,

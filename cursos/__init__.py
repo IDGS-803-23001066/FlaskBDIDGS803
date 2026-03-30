@@ -1,7 +1,7 @@
 from flask import Blueprint
 
-maestros_bp = Blueprint(
-    'maestros',
+cursos_bp = Blueprint(
+    'cursos',
     __name__,
     template_folder='templates'
 )

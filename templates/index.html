@@ -1,84 +1,42 @@
-    {% extends "layout.html" %}
-    {% block container %}
+{% extends "layout.html" %}
 
-    <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
-        
-        <a href="#" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
-            Read more
+{% block container %}
+
+<div class="p-10 text-center">
+
+    <h1 class="text-3xl font-bold mb-4">
+        Bienvenido al Sistema Escolar
+    </h1>
+
+    <p class="mb-8 text-lg">
+        Desde esta plataforma podrás administrar alumnos, maestros y cursos,
+        además de consultar las inscripciones de los estudiantes.
+    </p>
+
+    <div class="flex justify-center gap-4">
+
+        <a href="/alumnos"
+        class="text-white bg-blue-600 px-6 py-3 rounded-lg hover:bg-blue-700">
+        Ver Alumnos
         </a>
 
-        <table class="w-full text-sm text-left rtl:text-right text-body">
-            
-            <thead class="bg-neutral-secondary-soft border-b border-default">
-                <tr>
-                    <th scope="col" class="px-6 py-3 font-medium">
-                        Nombre
-                    </th>
-                    <th scope="col" class="px-6 py-3 font-medium">
-                        APELLIDOS 
-                    </th>
-                    
-                    <th scope="col" class="px-6 py-3 font-medium">
-                        CORREO
-                    </th>
-                     <th scope="col" class="px-6 py-3 font-medium">
-                        TELEFONO
-                    </th>
-                    <th scope="col" class="px-6 py-3 font-medium">
-                        DETALLES
-                    </th>
-                    <th scope="col" class="px-6 py-3 font-medium">
-                        EDITAR
-                    </th>
-                    <th scope="col" class="px-6 py-3 font-medium">
-                        ELIMINAR
-                    </th>
-                </tr>
-            </thead>
+        <a href="/Maestros"
+        class="text-white bg-green-600 px-6 py-3 rounded-lg hover:bg-green-700">
+        Ver Maestros
+        </a>
 
-            <tbody>
-                {% for alum in alumno %}
-                <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
-                    <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                        {{ alum.nombre }}
-                    </th>
-                    <td class="px-6 py-4">
-                        {{ alum.apellidos }}
-                    </td>
-                    
-                    <td class="px-6 py-4">
-                        {{ alum.email }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ alum.telefono }}
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="{{ url_for('detalles', id=alum.id) }}" 
-                        class="font-medium text-fg-brand hover:underline">
-                        detalles
-    </a>
-                    </td>
-                     <td class="px-6 py-4">
-                        <a href="{{ url_for('modificar', id=alum.id) }}" 
-                        class="font-medium text-fg-brand hover:underline">
-                        editar
-    </a>
-                    </td>
+        <a href="/Cursos"
+        class="text-white bg-purple-600 px-6 py-3 rounded-lg hover:bg-purple-700">
+        Ver Cursos
+        </a>
 
-                    <td class="px-6 py-4">
-                        <a href="{{ url_for('eliminar', id=alum.id) }}" 
-                        class="font-medium text-fg-brand hover:underline">
-                        Eliminar
-    </a>
-                    </td>
-                    
-                    
-                    
-                </tr>
-                {% endfor %}
-            </tbody>
+        <a href="/consultas"
+        class="text-white bg-orange-600 px-6 py-3 rounded-lg hover:bg-orange-700">
+        Consultas
+        </a>
 
-        </table>
     </div>
 
-    {% endblock %}
+</div>
+
+{% endblock %}

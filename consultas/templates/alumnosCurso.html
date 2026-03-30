@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+{% block container %}
+
+<div class="max-w-4xl mx-auto">
+
+<h2 class="text-2xl font-semibold mb-6">
+Consultar alumnos por curso
+</h2>
+
+<div class="bg-white p-6 rounded-lg shadow border mb-6">
+
+<form method="POST" class="flex gap-4 items-center">
+
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+<select name="curso_id"
+class="border px-3 py-2 rounded-lg w-64">
+
+{% for curso in cursos %}
+
+<option value="{{curso.id}}">
+{{curso.nombre}}
+</option>
+
+{% endfor %}
+
+</select>
+
+<button type="submit"
+class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+Consultar
+</button>
+
+</form>
+
+</div>
+
+
+{% if curso %}
+
+<h3 class="text-lg font-bold mb-4">
+Curso: {{curso.nombre}}
+</h3>
+
+<div class="bg-white shadow rounded-lg border overflow-hidden">
+
+<table class="w-full text-sm text-left">
+
+<thead class="bg-gray-100 border-b">
+
+<tr>
+<th class="px-6 py-3">ID</th>
+<th class="px-6 py-3">Nombre</th>
+<th class="px-6 py-3">Email</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for alumno in alumnos %}
+
+<tr class="border-b hover:bg-gray-50">
+
+<td class="px-6 py-3">
+{{ alumno.id }}
+</td>
+
+<td class="px-6 py-3">
+{{ alumno.nombre }} {{ alumno.apaterno }}
+</td>
+
+<td class="px-6 py-3">
+{{ alumno.email }}
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+{% endif %}
+
+</div>
+
+{% endblock %}

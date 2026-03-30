@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block container %}
+
+<div class="max-w-sm mx-auto">
+
+    
+
+    <h2 class="text-xl font-semibold mb-4 text-heading">
+        Registrar Curso
+    </h2>
+
+    <form method="POST">
+
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <div class="mb-5">
+            <label class="block mb-2.5 text-sm font-medium text-heading">
+                Nombre del Curso
+            </label>
+            <input type="text"
+                   name="nombre"
+                   value="{{ form.nombre.data or '' }}"
+                   class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs">
+        </div>
+
+        <div class="mb-5">
+            <label class="block mb-2.5 text-sm font-medium text-heading">
+                Descripción
+            </label>
+            <textarea name="descripcion"
+                      rows="3"
+                      class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs">{{ form.descripcion.data or '' }}</textarea>
+        </div>
+
+        <div class="mb-5">
+            <label class="block mb-2.5 text-sm font-medium text-heading">
+                Maestro
+            </label>
+            <select name="maestro_id"
+                    class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs">
+                {% for value, label in form.maestro_id.choices %}
+                <option value="{{ value }}">
+                    {{ label }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="flex gap-4">
+
+            <button type="submit"
+                class="text-white bg-brand hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium rounded-base text-sm px-4 py-2.5">
+                Guardar Curso
+            </button>
+
+            <a href="{{ url_for('cursos.lista_cursos') }}"
+                class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:ring-red-300 shadow-xs font-medium rounded-base text-sm px-4 py-2.5 text-center">
+                Cancelar
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

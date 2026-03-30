@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block container %}
+<h2 class="text-xl font-bold mb-4">Cursos en los que está un alumno</h2>
+
+<form method="POST" class="mb-4">
+    {{ form.alumno_id.label }} {{ form.alumno_id() }}
+    <button type="submit" class="bg-blue-600 text-white px-3 py-1 rounded">Consultar</button>
+</form>
+
+{% if cursos %}
+    <ul class="list-disc pl-5">
+    {% for curso in cursos %}
+        <li>{{ curso.nombre }} - Maestro: {{ curso.maestro.nombre }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

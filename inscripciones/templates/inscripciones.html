@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+{% block container %}
+
+<div class="max-w-3xl mx-auto">
+
+    <h2 class="text-2xl font-semibold mb-6">
+        Inscribir Alumno a Curso
+    </h2>
+
+    <div class="bg-white p-6 rounded-lg shadow border">
+
+        <form method="POST" class="space-y-5">
+
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+          
+            <div>
+                <label class="block mb-2 font-medium text-gray-700">
+                    Alumno
+                </label>
+
+                <select name="alumno_id"
+                class="w-full border px-3 py-2 rounded-lg focus:ring-2 focus:ring-purple-500">
+
+                {% for value, label in form.alumno_id.choices %}
+                    <option value="{{value}}">
+                        {{label}}
+                    </option>
+                {% endfor %}
+
+                </select>
+            </div>
+
+            
+            <div>
+                <label class="block mb-2 font-medium text-gray-700">
+                    Curso
+                </label>
+
+                <select name="curso_id"
+                class="w-full border px-3 py-2 rounded-lg focus:ring-2 focus:ring-purple-500">
+
+                {% for value, label in form.curso_id.choices %}
+                    <option value="{{value}}">
+                        {{label}}
+                    </option>
+                {% endfor %}
+
+                </select>
+            </div>
+
+           
+            <div class="flex gap-4 pt-4">
+
+                <button type="submit"
+                class="bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700">
+                    Inscribir
+                </button>
+
+                <a href="{{ url_for('cursos.lista_cursos') }}"
+                class="bg-gray-500 text-white px-5 py-2 rounded-lg hover:bg-gray-600">
+                    Volver
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
